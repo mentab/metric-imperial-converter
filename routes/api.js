@@ -10,13 +10,12 @@ module.exports = function (app) {
   app.route('/api/convert')
     .get(function (req, res){
       var input = req.query.input.toLowerCase();
-      
       var initNum = convertHandler.getNum(input);
       var initUnit = convertHandler.getUnit(input);
       
       var initError = convertHandler.getInitError(initNum, initUnit);
       if (initError) {
-        res.json({error: initError})
+        res.json({string: initError})
       }
       
       var returnNum = convertHandler.convert(initNum, initUnit);

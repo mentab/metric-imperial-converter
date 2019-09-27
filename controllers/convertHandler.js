@@ -3,7 +3,7 @@ function ConvertHandler() {
   this.fromUnit = ['gal', 'l', 'lbs', 'kg', 'mi', 'km'];
   this.toUnit = ['l', 'gal', 'kg', 'lbs', 'km', 'mi'];
   this.spellingUnit = ['gallons', 'liters', 'pounds', 'kilograms', 'miles', 'kilometers'];
-  this.multiplicatorUnit = [3.78541, 0,264172, 0.453592, 2,20462, 1.60934, 0,621371];
+  this.multiplicatorUnit = [3.78541, 0.264172, 0.453592, 2.20462, 1.60934, 0.621371];
   
   /*
    * Return first letter of input
@@ -94,7 +94,7 @@ function ConvertHandler() {
     var returnUnit;
     
     var index = this.fromUnit.indexOf(initUnit);
-    if (index > 0)
+    if (index >= 0)
     {
         returnUnit = this.toUnit[index];
     }
@@ -109,7 +109,8 @@ function ConvertHandler() {
     var spellOutUnit;
     
     var index = this.fromUnit.indexOf(unit);
-    if (index > 0)
+    
+    if (index >= 0)
     {
         spellOutUnit = this.spellingUnit[index];
     }
@@ -123,9 +124,9 @@ function ConvertHandler() {
   this.convert = function(initNum, initUnit) {
     var result;
     var multiplicator;
-    
+
     var index = this.fromUnit.indexOf(initUnit);
-    if (index > 0)
+    if (index >= 0)
     {
         result = (initNum * this.multiplicatorUnit[index]).toFixed(5);
     }
@@ -137,8 +138,6 @@ function ConvertHandler() {
    * Get conversion string
    */
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    returnNum = returnNum;
-    
     var spellOutInitUnit = this.spellOutUnit(initUnit);
     var spellOutReturnUnit = this.spellOutUnit(returnUnit);
     
